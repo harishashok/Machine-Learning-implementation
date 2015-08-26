@@ -29,8 +29,15 @@ groceryRule <- apriori(groceries, parameter = list(support = 0.006, confidence =
 
 inspect(sort(groceryRule, by = "lift") [1:10])
 
+#FINDING SUBSETS OF ASSOCIATION RULES
+#To find the most appearing items along with berries, we can take a subset of this item in all the transactions
+berryRule <- subset(groceryRule, items %in%  c("berries","tropical fruit")
+inspect(berryRule)
 
-
+#Exporting the association rule findings to a csv file
+write(groceryRule, file = "grocery_association.csv", sep ="," , quote = TRUE, row.names = F)
+# To export as a dataframe
+grocery_DF <- as(groceryRule, "data.frame")
 
 
 
